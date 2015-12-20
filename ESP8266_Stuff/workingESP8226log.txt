@@ -1,0 +1,125 @@
+AT+CWMODE=3
+
+
+OK
+AT+RST
+
+
+OK
+
+ ets Jan  8 2013,rst cause:1, boot mode:(3,6)
+
+load 0x40100000, len 1396, room 16 
+tail 4
+chksum 0x89
+load 0x3ffe8000, len 776, room 4 
+tail 4
+chksum 0xe8
+load 0x3ffe8308, len 540, room 4 
+tail 8
+chksum 0xc0
+csum 0xc0
+
+2nd boot version : 1.4(b1)
+  SPI Speed      : 40MHz
+  SPI Mode       : QIO
+  SPI Flash Size & Map: 8Mbit(512KB+512KB)
+jump to run user1 @ 1000
+
+{
+Ai-Thinker Technology Co. Ltd.
+
+ready
+AT+CIPMUX=1
+
+
+OK
+AT+CWLAP
+
++CWLAP:(4,"HOME-5CE2",-83,"90:1a:ca:9a:5c:e0",1)
++CWLAP:(0,"xfinitywifi",-84,"96:1a:ca:9a:5c:e0",1)
++CWLAP:(1,"",-82,"80:37:73:7d:ba:db",1)
++CWLAP:(4,"HOME-08A1",-88,"cc:35:40:60:08:a1",1)
++CWLAP:(0,"xfinitywifi",-90,"ce:35:40:60:08:a3",1)
++CWLAP:(0,"xfinitywifi",-87,"5a:23:8c:2b:1b:3f",1)
++CWLAP:(4,"HOME_1B3D",-84,"58:23:8c:2b:1b:3d",1)
++CWLAP:(4,"HOME-15D2",-90,"00:1d:d1:84:15:d0",1)
++CWLAP:(4,"HOME-2C62",-93,"90:1a:ca:45:2c:60",1)
++CWLAP:(0,"xfinitywifi",-82,"96:1a:ca:45:2c:60",1)
++CWLAP:(3,"HP-Print-3D-Deskjet 2540 series",-91,"fc:15:b4:39:5b:3d",1)
++CWLAP:(4,"Wee-fee",-54,"48:f8:b3:d9:2c:77",3)
++CWLAP:(3,"DIRECT-QTM2020 Series",-47,"32:cd:a7:a2:c2:34",3)
++CWLAP:(0,"Wee-fee-guest",-54,"4a:f8:b3:d9:2c:78",3)
++CWLAP:(4,"1556 Router",-89,"c0:a0:bb:e4:9f:f6",3)
++CWLAP:(0,"AHACORP",-85,"58:0a:20:91:1e:40",6)
++CWLAP:(4,"AHA_Guest",-84,"58:0a:20:91:1e:42",6)
++CWLAP:(0,"xfinitywifi",-83,"20:25:64:f5:3d:b2",6)
++CWLAP:(3,"AHACORP-VDI",-86,"58:0a:20:91:1e:41",6)
++CWLAP:(0,"Joy78",-90,"fa:8f:ca:3b:02:16",6)
++CWLAP:(4,"HOME-D4DA-2.4",-81,"20:25:64:f5:3d:b0",6)
++CWLAP:(4,"HOME-8E12",-88,"00:1d:cf:9a:8e:10",6)
++CWLAP:(3,"WiFiRSU_718e0",-76,"20:10:7a:ec:e4:6d",8)
++CWLAP:(0,"xfinitywifi",-86,"e2:88:5d:3c:97:e9",11)
++CWLAP:(0,"xfinitywifi",-92,"8e:04:ff:b7:47:ab",11)
++CWLAP:(4,"HOME-D8F8",-86,"b8:9b:c9:27:d8:f8",11)
++CWLAP:(4,"HOME-9A74",-90,"cc:03:fa:85:9a:74",11)
++CWLAP:(4,"HOME-97E7",-87,"e0:88:5d:3c:97:e7",11)
++CWLAP:(4,"HOME-47A9",-92,"8c:04:ff:b7:47:a9",11)
+
+OK
+AT+CWJAP="Wee-fee","ilikebilly"
+
+WIFI CONNECTED
+WIFI GOT IP
+
+OK
+AT+CIPSTART=4,"TCP","192.168.1.101",80
+
+4,CONNECT
+
+OK
+4,CLOSED
+AT+CIPSTART=4,"TCP","192.168.1.101",80
+
+4,CONNECT
+
+OK
+AT+CIPSEND=4,48
+
+OK
+> 
+
+//Here I sent technically 3 lines they are below
+GET /hello.php HTTP/1.1\r\n
+Host: 192.168.1.101\r\n\r\n
+
+
+Recv 48 bytes
+
+SEND OK
+
++IPD,4,267:HTTP/1.1 200 OK
+Date: Fri, 04 Sep 2015 18:01:20 GMT
+Server: Apache/2.4.10 (Ubuntu)
+Vary: Accept-Encoding
+Content-Length: 96
+Content-Type: text/html; charset=UTF-8
+
+<html>
+ <head>
+  <title>PHP Test</title>
+ </head>
+ <body>
+ <p>Hello World</p> 
+ </body>
+</html>
+4,CLOSED
+
+
+
+
+
+New get request:
+AT+CIPSEND=4,51
+GET /sensor1 HTTP/1.1\r\n
+Host: 192.168.1.114:8081\r\n\r\n

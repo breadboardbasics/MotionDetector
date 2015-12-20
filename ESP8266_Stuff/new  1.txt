@@ -1,0 +1,12 @@
+AT+CIPSEND=4,42
+GET http://192.168.1.114:8081 HTTP/1.0\r\n\r\n 
+
+AT+CIPSEND=4,46
+GET / HTTP/1.1\r\n
+Host: 196.168.1.114:8081\r\n\r\n\r\n
+
+
+
+AT+CIPSEND=4,51
+GET /sensor1 HTTP/1.1\r\n
+Host: 192.168.1.114:8081\r\n\r\n

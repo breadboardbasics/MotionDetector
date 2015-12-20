@@ -1,0 +1,6 @@
+To reflash esp8266...
+
+1. Device needs to be set up like normal including the CD-PD pin that goes to vcc
+2. Next gpio-0 must be connected to ground
+3. Esp8266 now needs to be restarted
+4. Now esp8266 can be flashed
