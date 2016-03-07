@@ -4,7 +4,6 @@ var fs = require('fs');
 const PORT = 8081;
 var MS_BUZZ1 = 1;
 var MS_BUZZ2 = 1;
-var ALERTS = 1;
 
 function handleRequest(request,response){
 	try{
@@ -25,19 +24,8 @@ dispatcher.onGet("/", function(request, response) {
 	});
 	console.log('Someone visited main page');
 });       
-   
-dispatcher.onGet("/MotionSensor1", function(request, response) {
-    response.writeHead(200, {'Content-Type': 'text/plain'});
-    if(MS_BUZZ1 == 1){
-		response.end('BUZZ_ON');
-	}
-	else{
-		response.end('BUZZ_OFF');
-	}
-	logMotionSensor(1);
-});    
 
-dispatcher.onGet("/MotionSensor2", function(request, response) {
+dispatcher.onGet("/sensor/:id", function(request, response, id) {
     response.writeHead(200, {'Content-Type': 'text/plain'});
     if(MS_BUZZ2 == 1){
 		response.end('BUZZ_ON');
@@ -71,20 +59,10 @@ stdin.addListener("data", function(d) {
 		console.log("Turned Motion Sensor 2 Buzzer ON");
 		MS_BUZZ2 = 1;
 	}
-	if(d.toString().trim() == "ALERTS_ON"){
-		console.log("Turned alerts on");
-		ALERTS = 1;
-	}
-	if(d.toString().trim() == "ALERTS_OFF"){
-		console.log("Turned alerts off");
-		ALERTS = 0;
-	}
 
 	if(d.toString().trim() == "help"){
 		console.log("\nSupported Commands: \n\r\nMS_BUZZ_X_ON -- Turns buzzer on X is sensor number\n\r"
-		+"MS_BUZZ_X_OFF -- Turns buzzer off X is sensor number\n\r"
-		+"ALERTS_ON -- Turns console alerts on\n\r"
-		+"ALERTS_OFF -- Turns console alerts off\n\r");
+		+"MS_BUZZ_X_OFF -- Turns buzzer off X is sensor number\n\r");
 	}
 	
 });
@@ -100,10 +78,8 @@ var currentdate = new Date();
    
 //[...]
 var logfilename = "resources/MotionLog" + sensor + ".txt";
-var alert = "Motion Detected on Motion Sensor " + sensor;
-if(ALERTS == 1){
-	console.log(alert)
-}
+var alert = "Motion Detected on sensor" + sensor;
+console.log(alert)
 fs.appendFile(logfilename, logstring, encoding='utf8', function (err) {
     if (err) throw err;
 });
