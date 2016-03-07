@@ -1,0 +1,50 @@
+extra sensors stuff
+
+	
+	if(d.toString().trim() == "MS_BUZZ_3_OFF"){
+		console.log("Turned Motion Sensor 3 Buzzer OFF");
+		var MS_BUZZ3 = 0;
+	}
+	if(d.toString().trim() == "MS_BUZZ_3_ON"){
+		console.log("Turned Motion Sensor 3 Buzzer ON");
+		var MS_BUZZ3 = 1;
+	}
+	
+	if(d.toString().trim() == "MS_BUZZ_4_OFF"){
+		console.log("Turned Motion Sensor 4 Buzzer OFF");
+		var MS_BUZZ4 = 0;
+	}
+	if(d.toString().trim() == "MS_BUZZ_4_ON"){
+		console.log("Turned Motion Sensor 4 Buzzer ON");
+		var MS_BUZZ4 = 1;
+	}
+	
+	if(d.toString().trim() == "MS_BUZZ_5_OFF"){
+		console.log("Turned Motion Sensor 5 Buzzer OFF");
+		var MS_BUZZ5 = 0;
+	}
+	if(d.toString().trim() == "MS_BUZZ_5_ON"){
+		console.log("Turned Motion Sensor 5 Buzzer ON");
+		var MS_BUZZ5 = 1;
+	}
+	
+	
+	
+Example GET request result	
+
+	connecting to Wee-fee1
+..
+WiFi connected
+IP address: 
+192.168.1.122
+[HTTP] begin...
+[HTTP] GET...
+[HTTP] GET... code: 200
+Start
+7
+BUZZ_ON
+0
+
+
+Stop
+Done!Still Connected
